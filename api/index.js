@@ -4,8 +4,8 @@ const fs = require("fs")
 // 文件路径
 const DATA_PATH = path.join(__dirname, 'json', 'data.json')
 const CATE_PATH = path.join(__dirname, 'json', 'categroy.json')
-const INFO_PATH = path.join(__dirname, 'json', 'newsinfo.json')
 const LIST_PATH = path.join(__dirname, 'json', 'newslist.json')
+const INFO_PATH = path.join(__dirname, 'json', 'newsinfo.json')
 
 const api = express.Router()
 
@@ -28,8 +28,8 @@ api.get("/cate", (req, res) => {
 })
 
 //  info 接口
-api.get("/info", (req, res) => {
-  fs.readFile(INFO_PATH, function (err, data) {
+api.get("/list", (req, res) => {
+  fs.readFile(LIST_PATH, function (err, data) {
     result = JSON.parse(data.toString());
     // 读取的数据响应到页面中
     res.send(result)
@@ -37,11 +37,14 @@ api.get("/info", (req, res) => {
 })
 
 //  list 接口
-api.get("/list", (req, res) => {
-  fs.readFile(LIST_PATH, function (err, data) {
+api.get("/info", (req, res) => {
+  fs.readFile(INFO_PATH, function (err, data) {
     result = JSON.parse(data.toString());
     // 读取的数据响应到页面中
-    res.send(result)
+    let id = req.query.id;
+    let list = result.list;
+    let resItem = list[id]
+    res.send(resItem)
   })
 })
 
