@@ -27,16 +27,19 @@ api.get("/cate", (req, res) => {
   })
 })
 
-//  info 接口
+//  list 接口
 api.get("/list", (req, res) => {
   fs.readFile(LIST_PATH, function (err, data) {
     result = JSON.parse(data.toString());
     // 读取的数据响应到页面中
-    res.send(result)
+    let cid = req.query.cid
+    let resultArr = result.result
+    let response = resultArr.find(item => item.cid == cid)
+    res.send(response)
   })
 })
 
-//  list 接口
+//  info 接口
 api.get("/info", (req, res) => {
   fs.readFile(INFO_PATH, function (err, data) {
     result = JSON.parse(data.toString());
