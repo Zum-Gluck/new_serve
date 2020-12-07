@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
+const path = require("path")
 
+app.use(express.static(path.join(__dirname, "dist")))
 // 跨域资源
 app.use("*", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); //*号代表所有都跨域访问
