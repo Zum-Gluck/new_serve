@@ -7,8 +7,8 @@ const LIST_PATH = path.join(__dirname, 'json', 'newslist.json')
 const INFO_PATH = path.join(__dirname, 'json', 'newsinfo.json')
 
 const api = express.Router()
- 
-//  categroy 接口
+
+//  categroy 接
 api.get("/cate", (req, res) => {
   fs.readFile(CATE_PATH, function (err, data) {
     result = JSON.parse(data.toString());
@@ -37,7 +37,7 @@ api.get("/info", (req, res) => {
     let id = req.query.id;
     let list = result.list;
     let resItem = list[id]
-    res.send(resItem)
+    res.send(resItem);
   })
 })
 
